@@ -1,6 +1,6 @@
 {
     "name": "evina",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "minimalist in-app events library",
     "main": "src/evina.js",
     "directories": {
