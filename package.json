@@ -29,6 +29,7 @@
     "homepage": "https://github.com/Srirangan/evina",
     "devDependencies": {
         "mocha": "*",
-        "jasba": "*"
+        "jasba": "*",
+        "jshint": "*"
     }
 }
