@@ -1,18 +1,27 @@
-(function () {
+(function (global) {
     "use strict";
 
-    var evina = {listeners: {}};
+    global.Evina = Evina;
+    global.evina = new Evina();
 
-    window.evina = evina;
+    /**
+     * instantiate new Evina
+     * @returns {Evina}
+     * @constructor
+     */
+    function Evina() {
+        this.listeners = {};
+        return this;
+    }
 
     /**
      * adds an event `listener` for `event`
      * @param event
      * @param listener
      */
-    evina.on = function (event, listener) {
-        evina.listeners[event] = evina.listeners[event] || [];
-        if (typeof listener === "function") evina.listeners[event].push(listener);
+    Evina.prototype.on = function (event, listener) {
+        this.listeners[event] = this.listeners[event] || [];
+        if (typeof listener === "function") this.listeners[event].push(listener);
     };
 
     /**
@@ -20,9 +29,9 @@
      * @param event
      * @param [listener]
      */
-    evina.off = function (event, listener) {
-        if (listener) evina.listeners[event].splice(evina.listeners[event].indexOf(listener), 1);
-        else evina.listeners[event] = [];
+    Evina.prototype.off = function (event, listener) {
+        if (listener) this.listeners[event].splice(this.listeners[event].indexOf(listener), 1);
+        else this.listeners[event] = [];
     };
 
     /**
@@ -30,10 +39,10 @@
      * @param event
      * @param [context]
      */
-    evina.trigger = function (event, context) {
+    Evina.prototype.trigger = function (event, context) {
         context = context || {};
         context.event = event;
-        evina.listeners[event].forEach(function (listener) { listener(context); });
+        this.listeners[event].forEach(function (listener) { listener(context); });
     };
 
-})();
+})(window || global);
