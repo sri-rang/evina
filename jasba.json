@@ -1,0 +1,9 @@
+{
+    "js": {
+        "type": "javascript",
+        "sources": ["src/evina.js"],
+        "watch_folders": ["src"],
+        "target": "target/evina.min.js",
+        "minify": true
+    }
+}

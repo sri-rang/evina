@@ -1,0 +1,34 @@
+{
+    "name": "evina",
+    "version": "0.0.1",
+    "description": "minimalist in-app events library",
+    "main": "src/evina.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "start": "./node_modules/.bin/jasba --do-not-watch",
+        "test": "./node_modules/.bin/mocha test/* --reporter spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/Srirangan/evina.git"
+    },
+    "keywords": [
+        "events",
+        "custom",
+        "event",
+        "in-app",
+        "events"
+    ],
+    "author": "Srirangan <srirangan@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Srirangan/evina/issues"
+    },
+    "homepage": "https://github.com/Srirangan/evina",
+    "devDependencies": {
+        "mocha": "*",
+        "jasba": "*"
+    }
+}
