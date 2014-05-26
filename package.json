@@ -7,8 +7,8 @@
         "test": "test"
     },
     "scripts": {
-        "start": "node node_modules/.bin/jasba",
-        "test": "node node_modules/.bin/mocha test/* --reporter spec"
+        "start": "./node_modules/.bin/jasba",
+        "test": "./node_modules/.bin/mocha test/* --reporter spec"
     },
     "repository": {
         "type": "git",
