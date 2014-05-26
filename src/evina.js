@@ -1,8 +1,8 @@
-(function (global) {
+(function (window) {
     "use strict";
 
-    global.Evina = Evina;
-    global.evina = new Evina();
+    window.Evina = Evina;
+    window.evina = new Evina();
 
     /**
      * instantiate new Evina
