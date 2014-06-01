@@ -51,6 +51,7 @@
         var evina = this;
         if (!Array.isArray(events)) events = [events];
         events.forEach(function (event) {
+            if (!Array.isArray(evina.listeners[event])) return;
             context = context || {};
             context.event = event;
             evina.listeners[event].forEach(function (listener) { listener(context); });
