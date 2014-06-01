@@ -15,34 +15,46 @@
     }
 
     /**
-     * adds an event `listener` for `event`
-     * @param event
+     * adds an event `listener` for `events`
+     * @param events
      * @param listener
      */
-    Evina.prototype.on = function (event, listener) {
-        this.listeners[event] = this.listeners[event] || [];
-        if (typeof listener === "function") this.listeners[event].push(listener);
+    Evina.prototype.on = function (events, listener) {
+        var evina = this;
+        if (!Array.isArray(events)) events = [events];
+        events.forEach(function (event) {
+            evina.listeners[event] = evina.listeners[event] || [];
+            if (typeof listener === "function") evina.listeners[event].push(listener);
+        });
     };
 
     /**
-     * removes one or all event `listener` for `event`
-     * @param event
+     * removes one or all event `listener` for `events`
+     * @param events
      * @param [listener]
      */
-    Evina.prototype.off = function (event, listener) {
-        if (listener) this.listeners[event].splice(this.listeners[event].indexOf(listener), 1);
-        else this.listeners[event] = [];
+    Evina.prototype.off = function (events, listener) {
+        var evina = this;
+        if (!Array.isArray(events)) events = [events];
+        events.forEach(function (event) {
+            if (listener) evina.listeners[event].splice(evina.listeners[event].indexOf(listener), 1);
+            else evina.listeners[event] = [];
+        });
     };
 
     /**
-     * dispatches `event` and passes `context` to listener
-     * @param event
+     * dispatches `events` and passes `context` to listener
+     * @param events
      * @param [context]
      */
-    Evina.prototype.trigger = function (event, context) {
-        context = context || {};
-        context.event = event;
-        this.listeners[event].forEach(function (listener) { listener(context); });
+    Evina.prototype.trigger = function (events, context) {
+        var evina = this;
+        if (!Array.isArray(events)) events = [events];
+        events.forEach(function (event) {
+            context = context || {};
+            context.event = event;
+            evina.listeners[event].forEach(function (listener) { listener(context); });
+        });
     };
 
 })(window || global);
