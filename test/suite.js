@@ -16,9 +16,14 @@
                 evina.on("ev_on", function () {});
                 assert.ok(evina.listeners.hasOwnProperty("ev_on"));
             });
-            it("trigger", function (done) {
-                evina.on("ev_trigger", function () { done(); });
-                evina.trigger("ev_trigger");
+            describe("trigger", function () {
+                it("should trigger", function (done) {
+                    evina.on("ev_trigger", function () { done(); });
+                    evina.trigger("ev_trigger");
+                });
+                it("should ignore unregistered events", function () {
+                    assert.doesNotThrow(function () { evina.trigger("dsfkjlsdjkhjsfdhjsak"); });
+                });
             });
             it("off", function () {
                 var i = 0;
