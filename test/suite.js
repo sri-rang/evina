@@ -34,6 +34,14 @@
                 evina.trigger("hello_world");
                 assert.equal(i, 1);
             });
+            it("once", function () {
+                var i = 0;
+                evina.once("hello_world", function () { i++; });
+                evina.trigger("hello_world");
+                assert.equal(i, 1);
+                evina.trigger("hello_world");
+                assert.equal(i, 1);
+            });
         });
 
         describe("multiple", function () {
@@ -51,6 +59,12 @@
                 evina.off(["some_event_1", "some_event_2"]);
                 evina.trigger(["some_event_1", "some_event_2"]);
                 assert.equal(i, 2);
+            });
+            it("once", function () {
+                evina.once(["some_event_1", "some_event_2"], function () { i++; });
+                evina.trigger(["some_event_1", "some_event_2"]);
+                evina.trigger(["some_event_1", "some_event_2"]);
+                assert.equal(i, 3);
             });
         });
 

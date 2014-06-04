@@ -29,6 +29,20 @@
     };
 
     /**
+     * executes `listener` once for `events`
+     * @param events
+     * @param listener
+     */
+    Evina.prototype.once = function (events, listener) {
+        var evina = this,
+            real_listener = function () {
+                listener.apply(null, arguments);
+                evina.off(events, real_listener);
+            };
+        evina.on(events, real_listener);
+    };
+
+    /**
      * removes one or all event `listener` for `events`
      * @param events
      * @param [listener]
